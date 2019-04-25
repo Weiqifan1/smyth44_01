@@ -7,7 +7,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ebookfrenzy.lifecycledemo.R
+
 import com.ebookfrenzy.lifecycledemo.DemoObserver
+import com.ebookfrenzy.lifecycledemo.DemoOwner
 
 class MainFragment : Fragment() {
 
@@ -16,6 +18,7 @@ class MainFragment : Fragment() {
     }
 
     private lateinit var viewModel: MainViewModel
+    private lateinit var demoOwner: DemoOwner
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,7 +31,11 @@ class MainFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        lifecycle.addObserver(DemoObserver())
+
+        demoOwner = DemoOwner()
+        demoOwner.startOwner()
+        demoOwner.stopOwner()
+        //lifecycle.addObserver(DemoObserver())
         // TODO: Use the ViewModel
     }
 

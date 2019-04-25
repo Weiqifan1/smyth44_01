@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.ebookfrenzy.lifecycledemo.R
+import com.ebookfrenzy.lifecycledemo.DemoObserver
 
 class MainFragment : Fragment() {
 
@@ -23,9 +24,11 @@ class MainFragment : Fragment() {
         return inflater.inflate(R.layout.main_fragment, container, false)
     }
 
+    //nået til 9103
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
+        lifecycle.addObserver(DemoObserver())
         // TODO: Use the ViewModel
     }
 
